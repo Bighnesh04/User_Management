@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banking App Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">B</div>
+        <div>
+          <div class="brand-name">Banking App</div>
+          <div class="brand-subtitle">Connected FastAPI UI</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-label">API Base URL</div>
+        <input id="apiBase" class="input" value="http://127.0.0.1:8000" />
+        <button id="saveApiBaseBtn" class="btn primary w-full">Save API URL</button>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-label">Session</div>
+        <div id="sessionInfo" class="status-row">Not logged in</div>
+        <button id="logoutBtn" class="btn secondary w-full">Logout</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Live Connected Dashboard</p>
+          <h1>Frontend connected to your FastAPI banking endpoints.</h1>
+          <p class="hero-copy">
+            Register, login, run KYC, create accounts, perform transactions,
+            apply loans, and test admin APIs directly from this UI.
+          </p>
+        </div>
+      </header>
+
+      <section class="cards two-col">
+        <article class="card">
+          <div class="card-top"><h2>Register</h2></div>
+          <div class="form-grid">
+            <input id="regName" class="input" placeholder="Full name" />
+            <input id="regEmail" class="input" placeholder="Email" />
+            <input id="regPassword" class="input" type="password" placeholder="Password" />
+            <button id="registerBtn" class="btn primary">Register</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><h2>Login</h2></div>
+          <div class="form-grid">
+            <input id="loginEmail" class="input" placeholder="Email" />
+            <input id="loginPassword" class="input" type="password" placeholder="Password" />
+            <button id="loginBtn" class="btn primary">Login</button>
+            <textarea id="tokenView" class="input code" rows="3" readonly placeholder="JWT token appears here"></textarea>
+          </div>
+        </article>
+      </section>
+
+      <section class="cards two-col">
+        <article class="card">
+          <div class="card-top"><h2>KYC Verification</h2></div>
+          <div class="form-grid">
+            <input id="pan" class="input" placeholder="PAN (ABCDE1234F)" />
+            <input id="aadhaar" class="input" placeholder="Aadhaar (12 digits)" />
+            <button id="kycBtn" class="btn primary">Verify KYC</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><h2>Account Management</h2></div>
+          <div class="form-grid">
+            <select id="accountType" class="input">
+              <option value="savings">Savings</option>
+              <option value="current">Current</option>
+            </select>
+            <input id="initialDeposit" class="input" type="number" min="0" step="0.01" placeholder="Initial deposit" />
+            <button id="createAccountBtn" class="btn primary">Create Account</button>
+            <button id="listAccountsBtn" class="btn secondary">List My Accounts</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="cards three-col">
+        <article class="card">
+          <div class="card-top"><h2>Deposit</h2></div>
+          <div class="form-grid">
+            <input id="depDest" class="input" type="number" placeholder="Destination account ID" />
+            <input id="depAmount" class="input" type="number" step="0.01" placeholder="Amount" />
+            <input id="depLocation" class="input" placeholder="Location (optional)" />
+            <button id="depositBtn" class="btn primary">Deposit</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><h2>Withdraw</h2></div>
+          <div class="form-grid">
+            <input id="wdSource" class="input" type="number" placeholder="Source account ID" />
+            <input id="wdAmount" class="input" type="number" step="0.01" placeholder="Amount" />
+            <input id="wdLocation" class="input" placeholder="Location (optional)" />
+            <button id="withdrawBtn" class="btn primary">Withdraw</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><h2>Transfer</h2></div>
+          <div class="form-grid">
+            <input id="trSource" class="input" type="number" placeholder="Source account ID" />
+            <input id="trDest" class="input" type="number" placeholder="Destination account ID" />
+            <input id="trAmount" class="input" type="number" step="0.01" placeholder="Amount" />
+            <input id="trLocation" class="input" placeholder="Location (optional)" />
+            <button id="transferBtn" class="btn primary">Transfer</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="cards two-col">
+        <article class="card">
+          <div class="card-top"><h2>Loan</h2></div>
+          <div class="form-grid">
+            <input id="loanPrincipal" class="input" type="number" step="0.01" placeholder="Principal" />
+            <input id="loanRate" class="input" type="number" step="0.001" placeholder="Annual rate (%)" />
+            <input id="loanMonths" class="input" type="number" placeholder="Tenure (months)" />
+            <button id="emiBtn" class="btn secondary">Calculate EMI</button>
+            <button id="applyLoanBtn" class="btn primary">Apply Loan</button>
+            <button id="myLoansBtn" class="btn secondary">My Loans</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><h2>Admin APIs</h2></div>
+          <div class="form-grid">
+            <button id="adminUsersBtn" class="btn secondary">All Users</button>
+            <button id="adminTxBtn" class="btn secondary">All Transactions</button>
+            <button id="adminFraudBtn" class="btn secondary">Fraud Alerts</button>
+            <button id="adminPendingLoansBtn" class="btn secondary">Pending Loans</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header"><h2>Response Console</h2></div>
+        <pre id="output" class="output">Ready.</pre>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
