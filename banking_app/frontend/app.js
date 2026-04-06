@@ -1,7 +1,7 @@
 const $ = (id) => document.getElementById(id);
 
 const state = {
-  apiBase: localStorage.getItem("apiBase") || "http://127.0.0.1:8000",
+  apiBase: localStorage.getItem("apiBase") || `${window.location.origin}/api`,
   token: localStorage.getItem("token") || "",
 };
 
@@ -52,7 +52,7 @@ function toNumber(value) {
 }
 
 $("saveApiBaseBtn").addEventListener("click", () => {
-  state.apiBase = $("apiBase").value.trim() || "http://127.0.0.1:8000";
+  state.apiBase = $("apiBase").value.trim() || `${window.location.origin}/api`;
   localStorage.setItem("apiBase", state.apiBase);
   setOutput("API Base Updated", { apiBase: state.apiBase });
 });

@@ -112,3 +112,7 @@ Where:
   - Auth Service
   - Transaction Service
   - Notification Service
+
+## AWS EC2 Deployment
+
+See `../deploy/ec2/README.md` for a lightweight `t3.micro` setup using `nginx` + `uvicorn`.
