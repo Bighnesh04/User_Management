@@ -15,6 +15,7 @@ env/
 # Local env files
 .env
 *.env
+*.pem
 
 # SQLite DB
 *.db

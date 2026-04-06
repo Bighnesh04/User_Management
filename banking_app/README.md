@@ -13,6 +13,7 @@ Professional, clean starter for a **User + Banking Management System** with:
 - Notification hooks via background tasks
 - Audit logging
 - Rate limiting + async DB + Redis cache support
+- SMTP email notifications
 
 ## Project Structure
 
@@ -112,6 +113,26 @@ Where:
   - Auth Service
   - Transaction Service
   - Notification Service
+
+## SMTP Email Notifications
+
+The app now uses SMTP for email notifications with your Gmail address as the sender:
+
+- `SMTP_USERNAME=pradhansaibighnesh@gmail.com`
+- `SMTP_FROM_EMAIL=pradhansaibighnesh@gmail.com`
+
+You must set a valid Gmail **App Password** in `SMTP_PASSWORD` for login to work.
+
+Example:
+
+```bash
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=pradhansaibighnesh@gmail.com
+SMTP_PASSWORD=your-gmail-app-password
+SMTP_FROM_EMAIL=pradhansaibighnesh@gmail.com
+SMTP_USE_TLS=true
+```
 
 ## AWS EC2 Deployment
 

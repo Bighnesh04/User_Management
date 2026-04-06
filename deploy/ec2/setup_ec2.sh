@@ -44,6 +44,8 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
+chown -R www-data:www-data /opt/banking_app/banking_app
+
 cat > .env <<'EOF'
 SECRET_KEY=change-this-to-a-strong-secret
 ACCESS_TOKEN_EXPIRE_MINUTES=60
@@ -70,28 +72,7 @@ RestartSec=5
 WantedBy=multi-user.target
 EOF
 
-cat > /etc/nginx/sites-available/${NGINX_SITE} <<'EOF'
-server {
-    listen 80;
-    server_name _;
-
-    root ${APP_DIR}/banking_app/frontend;
-    index index.html;
-
-    location /api/ {
-        proxy_pass http://127.0.0.1:8000/;
-        proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-}
-EOF
+cp /opt/banking_app/deploy/ec2/nginx-banking-app.conf /etc/nginx/sites-available/${NGINX_SITE}
 
 ln -sf /etc/nginx/sites-available/${NGINX_SITE} /etc/nginx/sites-enabled/${NGINX_SITE}
 rm -f /etc/nginx/sites-enabled/default
